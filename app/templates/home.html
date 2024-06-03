@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style_sheet %}
+<link type="text/css" rel="stylesheet" href="{% static 'css/home_style.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'css/login_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="row">
+        <div id="login-form">
+            <h1>Add New Todo</h1>
+            <form method="post" action="/add-todo/">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="add">
+            </form>
+        </div>
+    </div>
+
+    <div class="col">
+        {% if todos|length == 0 %}
+        <div>
+            no todos
+        </div>
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Title </th>
+                    <th> Status </th>
+                    <th> Priority </th>
+                    <th> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{ todo.title }} </td>
+                    <td> {{ todo.status }} </td>
+                    <td> {{ todo.priority }} </td>
+                    <td>
+                        <a href="/delete-todo/{{todo.id}}"> delete </a>
+                        {% if todo.status == 'P' %}
+                        <a href="/change-status/{{todo.id}}/C"> completed </a>
+                        {% else %}
+                        <a href="/change-status/{{todo.id}}/P"> pending </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
