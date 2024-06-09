@@ -1,16 +1,18 @@
-{% extends 'base.html' %}
-
-{% load static %}
-{% block style_sheet %}
-    <link type="text/css" rel="stylesheet" href="{% static 'css/signup_style.css' %}">
-{% endblock %}
-
-{% block content %}
-
+{% extends 'base.html' %} {% load static %} {% block style_sheet %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="{% static 'css/signup_style.css' %}" />
+{% endblock %} {% block content %}
+<div id="signup-form-container">
+  <div id="signup-form">
     <form method="post" action="/signup/">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create Account">
+      {% csrf_token %} {{ form.as_p }}
+      <div id="create-account">
+      <input type="submit" value="Create Account" />
+      </div>
     </form>
-
+  </div>
+</div>
+<p>{% csrf_token %}</p>
 {% endblock %}

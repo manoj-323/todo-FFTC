@@ -1,42 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block style_sheet %} 
     
-    {% block style_sheet %}
-
     {% endblock %}
-    
+
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
-<nav style="display: block;">
-    <div class="navbar">
-        <h1> TODO </h1>
+  <body>
+    <nav style="display: block">
+      <div class="navbar">
+        <h1>TODO</h1>
         <div class="nav-links">
-            {% if request.user.is_authenticated %}
-            <a href="/logout">logout</a>
-            {% else %}
-            <a href="/login" id="active">logni</a>
-            <a href="/signup">signup</a>
-            {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="/logout">logout</a>
+          {% else %}
+          <a href="/login" id="active">login</a>
+          <a href="/signup">signup</a>
+          {% endif %}
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- changing content -->
-<div>
-    {% block content %}
-
-    {% endblock %}
-</div>
-<!-- end -->
-
-
-</body>
-
+    <!-- changing content -->
+    <div>{% block content %} {% endblock %}</div>
+    <!-- end -->
+  </body>
 </html>

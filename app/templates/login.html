@@ -1,19 +1,18 @@
-{% extends 'base.html' %}
-  
-{% load static %}
-{% block style_sheet %}
-    <link type="text/css" rel="stylesheet" href="{% static 'css/login_style.css' %}">
-{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block style_sheet %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="{% static 'css/login_style.css' %}" />
+{% endblock %} {% block content %}
 
-
-{% block content %}
-    
+  <div id="form-container">
     <div id="login-form">
-        <form method="post" action="/login/">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Login">
-        </form>
+      <form method="post" action="/login/">
+        {% csrf_token %} {{ form.as_p }}
+        <div id="submit-button-container">
+        <input type="submit" value="Login" />
+        </div>
+      </form>
     </div>
-
+  </div>
 {% endblock %}
